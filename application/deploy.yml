@@ -10,28 +10,41 @@ spec:
   selector:
     matchLabels:
       app: vault-deploy
-  strategy: {}
   template:
     metadata:
       labels:
         app: vault-deploy
     spec:
       containers:
-        - image: vault:1.15.5
-        name: vault
-        command:
-        - "vault"
-        - "server"
-        - "-dev"
-        - "-dev-root-token-id=root" # Define um token root fixo (só para dev!)
-        - "-dev-listen-address=0.0.0.0:8200" # Permite escutar em todas as interfaces
-        ports:
-        - containerPort: 8200
-        resources:
-          requests:
-            memory: "64Mi"
-            cpu: "250m"
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-status: {}
+        - name: vault
+          image: vault:1.15.5
+          command:
+            - "vault"
+            - "server"
+            - "-dev"
+            - "-dev-root-token-id=root"
+            - "-dev-listen-address=0.0.0.0:8200"
+          ports:
+            - containerPort: 8200
+          securityContext:
+            runAsUser: 0
+          livenessProbe:
+            httpGet:
+              path: /v1/sys/health
+              port: 8200
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /v1/sys/health
+              port: 8200
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+
