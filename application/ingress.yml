@@ -11,7 +11,7 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-path: /v1/sys/health
 spec:
   rules:
-  - host: vault.573173989000.realhandsonlabs.net
+  - host: nginx.573173989000.realhandsonlabs.net
     http:
       paths:
       - path: /
