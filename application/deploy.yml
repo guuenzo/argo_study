@@ -2,25 +2,25 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: nginx-deploy
-  name: nginx-deploy
+    app: vault-deploy
+  name: vault-deploy
   namespace: worldskills
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-deploy
+      app: vault-deploy
   strategy: {}
   template:
     metadata:
       labels:
-        app: nginx-deploy
+        app: vault-deploy
     spec:
       containers:
-      - image: ubuntu/apache2
-        name: nginx
+      - image: vault
+        name: vault
         ports:
-        - containerPort: 80
+        - containerPort: 8200
         resources:
           requests:
             memory: "64Mi"

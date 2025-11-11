@@ -2,16 +2,16 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: nginx-svc
-  name: nginx-svc
+    app: vault-svc
+  name: vault-svc
   namespace: worldskills
 spec:
   ports:
   - port: 80
     protocol: TCP
-    targetPort: 80
+    targetPort: 8200
   selector:
-    app: nginx-deploy
+    app: vault-deploy
   type: ClusterIP
 status:
   loadBalancer: {}
