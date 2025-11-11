@@ -2,7 +2,7 @@ apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
   name: cpu-scaledobject
-  namespace: default
+  namespace: worldskills
 spec:
   minReplicaCount: 3
   maxReplicaCount: 6
