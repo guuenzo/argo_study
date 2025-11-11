@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: vault
-          image: vault:1.15.5
+          image: hashicorp/vault
           command:
             - "vault"
             - "server"
