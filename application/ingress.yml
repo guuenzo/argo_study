@@ -12,7 +12,7 @@ metadata:
 spec:
   rules:
   - host: nginx.573173989000.realhandsonlabs.net
-  - http:
+    http:
       paths:
       - path: /
         pathType: Prefix
