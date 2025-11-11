@@ -19,6 +19,12 @@ spec:
       containers:
       - image: vault
         name: vault
+        command:
+        - "vault"
+        - "server"
+        - "-dev"
+        - "-dev-root-token-id=root" # Define um token root fixo (só para dev!)
+        - "-dev-listen-address=0.0.0.0:8200" # Permite escutar em todas as interfaces
         ports:
         - containerPort: 8200
         resources:
