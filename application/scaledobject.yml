@@ -2,14 +2,14 @@ apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
   name: cpu-scaledobject
-  namespace: worldskills
+  namespace: default
 spec:
-  scaleTargetRef:
-    name: nginx-deploy   
   minReplicaCount: 3
-  maxReplicaCount: 6                
+  maxReplicaCount: 6
+  scaleTargetRef:
+    name: nginx-deploy
   triggers:
-    - type: cpu
-      metadata:
-        metricType: Utilization
-        value: "50"                     
+  - type: cpu
+    metricType: Utilization 
+    metadata:
+      value: "50"
